@@ -15,7 +15,7 @@ setup(
     entry_points={
         'console_scripts': [
             # <name you type after ros2 run> = <package>.<file>:<function>
-            'mission_template = undergrad_project_mrs.mission_template:main',
+            'my_mission = undergrad_project_mrs.my_mission:main',
         ],
     },
 )

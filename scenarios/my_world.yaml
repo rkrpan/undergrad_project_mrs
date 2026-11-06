@@ -1,0 +1,27 @@
+ground_robots:                         # drive them with /<name>/cmd_vel or /<name>/go_to
+  - name: herover_1                    # the name in the topics: /herover_1/...
+    pose: {x: -1.5, y: -1.5, yaw: 0.0} # where it starts: m, m, rad
+    drive: omni                        # omni: can drive sideways. diff: can't
+    model: herover                     # herover or scout
+
+crazyflies:                            # named cf_1, cf_2, ... in this order
+  - pose: {x: 0.0, y: 1.0, z: 0.03}    # cf_1
+
+obstacles:                             # pillars, m
+  - {x: 1.5, y: 0.5, radius: 0.35}
+  - {x: -0.5, y: 0.5, radius: 0.2}
+  - {x: 2.0, y: -1.5, radius: 0.3, height: 0.5}   # height: 2 m if left out
+
+tether:
+  winch: {x: -3.0, y: 0.0, z: 0.3}     # where the tether leaves the winch drum
+  ugv: herover_1                       # the tether runs over this ground robot
+  uav: cf_1                            # then through this drone, down to the object
+  object: {x: 0.5, y: -0.5}            # where the object starts on the floor
+  goal: {x: 2.5, y: 1.5, radius: 0.4}  # get the object's center into this circle
+  slack: 3.0                           # m of loose tether at the start
+  max_reel_speed: 0.5                  # m/s, the fastest the winch turns
+
+sim:
+  map: null                            # an empty floor with only your pillars
+  collision: true                      # robots stop at pillars. false: they pass through
+
