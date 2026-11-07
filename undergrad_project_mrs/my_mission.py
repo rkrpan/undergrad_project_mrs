@@ -48,22 +48,12 @@ class Mission(Node):
         self.create_subscription(PoseStamped, '/tether/object_pose', self.on_object_pose, 10)
 
     def run(self):
-        self.get_logger().info('1. UGV: a bit to its right, then back')
-        self.ugv_go_to(0.0, -0.5, yaw=0.0, duration=2.0)  # it faces +x, so its right is -y
-        self.ugv_go_to(0.0, 0.5, yaw=0.0, duration=2.0)
-        self.report_object()
+        self.get_logger().info('Starting the run')
+        
+        self.uav_go_to(0.25, 0.25, 0.0, yaw=0.0, duration=1.0)
+        self.winch(-0.25, seconds=2.0)
+        #self.ugv_go_to(0, 2.5, yaw=0.0, duration=2)
 
-        self.get_logger().info('2. UAV: take off, fly a bit forward, land')
-        self.uav_takeoff(height=1.0, duration=2.0)
-        self.uav_go_to(0.5, 0.0, 0.0, yaw=0.0, duration=2.0)
-        self.uav_land(duration=2.0)
-        self.report_object()
-
-        self.get_logger().info('3. Winch: pull the tether in, then let it out')
-        self.winch(-0.5, seconds=8.0)  # 4 m in: the slack goes, then the object slides
-        self.report_object()
-        self.winch(0.5, seconds=8.0)   # 4 m out: slack again, the object stays put
-        self.report_object()
 
         self.get_logger().info('done')
 
