@@ -108,7 +108,6 @@ def browseImage():
 def turtleGoTo(i, j):
     turtle.setpos(-square*m/2 + j*square + square/2, 
                 square*n/2 - i*square - square/2)
-
 def calculatePath():
     # todo: fetch path from astar.py and draw it using turtleGoTo
     path = getPath(filename)
