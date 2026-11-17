@@ -74,9 +74,8 @@ def getPath(inputFile):
     try:
         with open(inputFile, "r") as f:
             map = [line.strip() for line in f if line.strip()]
-            #print(map)
     except FileNotFoundError:
-        map = ['S000', '0110', '0110', '000G']
+        print("FILE NOT FOUND")
 
     n = len(map)
     if n == 0:
@@ -95,24 +94,14 @@ def getPath(inputFile):
             if map[i][j] == 'G':
                 goal = [i, j]
     
-    if start is None or goal is None:
-        raise Exception('Start or goal not found!')
+    if start is None:
+        raise Exception('Start not found!')
+    if goal is None:
+        raise Exception('Goal not found!')
 
-    #print(start, goal)
 
     # astar
-
     path = astar(start, goal, map, heuristic)
-
-    # for x in path:
-    #     string = map[x[0]]
-    #     i = x[0]
-    #     j = x[1]
-    #     if string[j] != 'S' and string[j] != 'G':
-    #        map[i] = string[:j] + '.' + string[j+1:]
-
-    # print('\n'.join(map))
-
     return path
 
 if __name__ == "__main__":

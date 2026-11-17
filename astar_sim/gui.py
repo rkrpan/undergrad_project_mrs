@@ -110,7 +110,7 @@ def browseImage():
             promptError()
             return
         m = len(map[0])
-        goal = (n, m)
+        goal = (n-1, m-1)
         for i in range (0, n, 1):
             if (len(map[i]) != m):
                 promptError()
@@ -122,10 +122,11 @@ def turtleGoTo(i, j, penup=False):
     turtle.setpos(-m/2 + j, 
                 n/2 - i)
     turtle.down()
+
+#draws the path from start to goal on the canvas
 def calculatePath():
-    # todo: fetch path from astar.py and draw it using turtleGoTo
+    print("Drawing the path...")
     path = getPath(mapFileName)
-    print(n, m)
     turtle.width(5)
     turtle.color("blue")
     turtle.up()
@@ -135,19 +136,23 @@ def calculatePath():
         turtle.down()
     turtle.width(1)
     turtle.color("black")
+    print("Path drawing finished!")
 
+# initiates the new goal pick
 def pickGoal():
     global waiting_for_click
     waiting_for_click = 1
     print("Pick the new goal!")
     canvas.config(cursor="hand1")
 
+#initiates the new start pick
 def pickStart():
     global waiting_for_click
     waiting_for_click = 2
     print("Pick the new start!")
     canvas.config(cursor="hand1")
 
+# ends the new goal/start pick
 def on_canvas_click(event):
     global waiting_for_click
 
