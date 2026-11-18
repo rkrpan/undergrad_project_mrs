@@ -11,6 +11,7 @@ obstacles:                             # pillars, m
   - {x: 1.5, y: 0.5, radius: 0.35}
   - {x: -0.5, y: 0.5, radius: 0.2}
   - {x: 2.0, y: -1.5, radius: 0.3, height: 0.5}   # height: 2 m if left out
+  - {x: 4.5, y: 0.5, radius: 1.0}  
 
 tether:
   winch: {x: -3.0, y: 0.0, z: 0.3}     # where the tether leaves the winch drum
